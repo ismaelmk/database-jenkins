@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet  author="Ricardo Mendez"  id="changelog-1.1">
+        <createTable tableName="wheels">
+            <column name="wheel_id" type="char(36)">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="size" type="varchar(64)"/>
+            <column name="model" type="varchar(64)"/>
+            <column name="year" type="varchar(64)"/>
+            <column name="brand" type="varchar(64)"/>
+            <column name="created_at" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_at" type="datetime" defaultValueComputed="NULL ON UPDATE CURRENT_TIMESTAMP"/>
+        </createTable>
+
+        <createIndex indexName="idx_created_at" tableName="cars">
+            <column name="created_at" type="varchar(15)"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>
