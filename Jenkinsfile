@@ -2,20 +2,21 @@ pipeline {
   agent any
   stages {
     stage('build') {
-      parallel {
-        stage('build') {
           steps {
-            sh 'echo "hola"'
-          }
-        }
+            script{
+              // Define Variable
+               def changeset = input(
+                      message: 'What changeset do you want to apply?',
+                      parameters: [
+                              [$class: 'StringParameterDefinition',
+                               name: 'input',
+                               description: 'changeset']
+                      ])
 
-        stage('build1') {
-          steps {
-            sh 'ls -la'
+              echo "The answer is: ${changeset}"
+            }
           }
-        }
-
-      }
+      
     }
 
   }
